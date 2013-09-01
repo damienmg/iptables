@@ -18,7 +18,7 @@
 #
 
 package "iptables" 
-package "perl"
+package "ruby"
 
 execute "rebuild-iptables" do
   command "/usr/sbin/rebuild-iptables"
@@ -49,3 +49,5 @@ end
 iptables_rule "all_established"
 iptables_rule "all_icmp"
 iptables_rule "allowed_ports"
+iptables_rule "prefix"
+iptables_rule "suffix"
