@@ -1,0 +1,5 @@
+<% if node[:iptables][:allowed_ports] -%>
+<%   node[:iptables][:allowed_ports].each do |port| -%>
+-A FWR -p tcp -m tcp --dport <%=port %> -j ACCEPT
+<%   end -%>
+<% end -%>

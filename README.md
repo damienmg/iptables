@@ -64,6 +64,9 @@ This would go in the cookbook,
 
     iptables_rule "http"
 
+To enable port 80 using node property simply adds 80 in the
+`[iptables][allowed_ports]` property array.
+
 License and Author
 ==================
 
