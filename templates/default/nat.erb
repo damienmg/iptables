@@ -1,0 +1,12 @@
+# Traffic initiated from the input networks got forwarded
+<% @network.each do |x| %>
+-I FORWARD -i <%=x['interface']%> -o <%=x['output']%> -s <%=x['network']%> -m conntrack --ctstate NEW -j ACCEPT
+<% end %>
+# Traffic already established allowed to go back
+-I FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+*nat
+# NAT rules
+<% @network.each do |x| %>
+-I POSTROUTING -o <%=x['output']%> -s <%=x['network']%> -j MASQUERADE
+<% end %>
