@@ -1,10 +1,13 @@
 <% if node[:iptables] and node[:iptables][:ports] -%>
 <%   node[:iptables][:ports].each do |port,info| -%>
-<%     info['interface'].each do |i| -%>
-<%       info['protocol'].each do |p| -%>
+<%     info['interface'].each do |i| 
+	 if @node['network']['interfaces'].has_key?(i) then 
+-%>
+<%         info['protocol'].each do |p| -%>
 -A FWR -i <%=i%> -p <%=p%> -m <%=p%> --dport <%=port %> -j ACCEPT
-<%       end -%>
-<%     end -%>
+<%         end -%>
+<%       end
+       end -%>
 <%   end -%>
 <% end -%>
 <% if node[:iptables] and node[:iptables][:allowed_ports] -%>
